@@ -37,14 +37,14 @@ def main():
     
     csv_agent = create_csv_agent(
         llm = ChatOpenAI(temperature=0, model = "gpt-4"),
-        path = "episode_info.csv",
+        path = "data/episode_info.csv",
         verbose = True,
         allow_dangerous_code = True
     )
     
     csv_agent_executor: AgentExecutor = create_csv_agent(
         llm = ChatOpenAI(temperature=0, model = "gpt-4"),
-        path = "episode_info.csv",
+        path = "data/episode_info.csv",
         verbose = True,
         allow_dangerous_code = True
     )
