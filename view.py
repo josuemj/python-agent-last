@@ -7,6 +7,15 @@ st.set_page_config(page_title="AI Agent Chat", layout="wide")
 
 st.title("🧑‍💻 AI Agent Chat Interface")
 st.write("Chat with your AI agent to execute Python code or analyze CSV data.")
+st.header("🤖 What Can This AI Help You With?")
+st.markdown("""
+This AI agent is designed to assist you with a wide range of topics, including:
+- **Python Programming**: Ask it to generate code, debug issues, or explain Python concepts.
+- **Data Science with CSV**: Analyze CSV files, generate insights, and perform data manipulations.
+- **Tech & IT Jobs of the Future**: Get insights into trending jobs for 2030 and the skills required to excel in them.
+- **Programming Languages**: Learn about popular programming languages, their use cases, and which ones to learn.
+- **Laptop Prices**: Get up-to-date information on laptop prices based on your requirements.
+""")
 
 # Initialize chat history
 if "messages" not in st.session_state:
