@@ -8,7 +8,7 @@ from langchain_experimental.tools import PythonAstREPLTool
 load_dotenv()
 
 def main():
-    print("star")
+    print("start")
     
     
     instructions = """You are an agent designed to write and execute Python code to answer questions.
