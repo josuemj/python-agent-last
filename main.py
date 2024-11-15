@@ -46,7 +46,7 @@ def main():
     
     csv_agent.invoke(
         input = {
-            "input" : "how many columns are there in the file episode_info.csv?"
+            "input" : "how many episode did Larry David wrote"
         }
     )
     
