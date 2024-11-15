@@ -43,6 +43,37 @@ def create_agents():
         allow_dangerous_code=True
     )
     
+    # agent for languages.csv
+    csv_agent_executor_languages = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4"),
+        path="data/languages.csv",
+        verbose=True,
+        allow_dangerous_code=True
+    )
+    
+    # agent for itjobs.csv
+    csv_agent_executor_itjobs = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4"),
+        path="data/it_jobs_2030.csv",
+        verbose=True,
+        allow_dangerous_code=True
+    )
+    
+    # agent laptop_prices.csv
+    csv_agent_executor_laptop_prices = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4"),
+        path="data/laptop_prices.csv",
+        verbose=True,
+        allow_dangerous_code=True
+    )
+    
+    csv_agent_executor_data_science = create_csv_agent(
+        llm=ChatOpenAI(temperature=0, model="gpt-4"),
+        path="data/data_science_job.csv",
+        verbose=True,
+        allow_dangerous_code=True
+    )
+    
     # Python agent wrapper
     def python_agent_executor_wrapper(original_prompt: str) -> Dict[str, Any]:
         return python_agent_executor.invoke({"input": original_prompt})
@@ -55,9 +86,29 @@ def create_agents():
             description="Executes Python code based on natural language instructions. Does not accept code as input."
         ),
         Tool(
-            name="CSV Agent",
+            name="CSV Agent episodes",
             func=csv_agent_executor.invoke,
-            description="Answers questions using the data in episode_info.csv via pandas calculations."
+            description="Answers questions using the data in data/episode_info.csv via pandas calculations."
+        ),
+        Tool(
+            name="CSV Agent languages",
+            func=csv_agent_executor_languages.invoke,
+            description="Answers questions using the data in data/languages.csv via pandas calculations."
+        ),
+        Tool(
+            name="CSV Agent it jobs",
+            func=csv_agent_executor_itjobs.invoke,
+            description="Answers questions using the data in data/it_jobs_2030.csv via pandas calculations."
+        ),
+        Tool(
+            name="CSV Agent laptop prices",
+            func=csv_agent_executor_laptop_prices.invoke,
+            description="Answers questions using the data in data/laptop_prices.csv via pandas calculations."
+        ),
+        Tool(
+            name="CSV Agent data science",
+            func=csv_agent_executor_data_science.invoke,
+            description="Answers questions using the data in data/data_science_job.csv via pandas calculations."
         )
     ]
     

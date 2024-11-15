@@ -41,8 +41,6 @@ if user_input:
             # Get response from the agent
             response = handle_query(user_input)
             
-            
-            
             # Store agent response in session state
             if isinstance(response, dict):
                 st.session_state.messages.append(("agent", response["output"]))
@@ -54,3 +52,42 @@ if user_input:
 # Display updated chat messages
 st.write("---")
 display_chat()
+
+#samples
+import streamlit as st
+from agent_executor import handle_query
+
+# Title for the section
+st.title("Examples")
+
+# List of example prompts
+ejemplos = [
+    "whic are the columns of it_jobs_2030",
+    "What is the most used GPU_model on laptop_prices.csv",
+    "What is the mean of salary_in_usd on data science jobs?",
+    "Which is the oldest programming language according to languages.csv?",
+]
+
+# Dropdown menu for selecting an example
+example = st.selectbox("Selecciona un ejemplo:", ejemplos)
+
+# Button to execute the selected example
+if st.button("Ejecutar ejemplo"):
+    user_input = example
+
+    with st.spinner("Procesando..."):
+        try:
+            # Get the response from the agent
+            answer = handle_query(user_input)
+            
+            # Display the agent's response
+            st.markdown("### Respuesta del agente:")
+            
+            # Check if the answer is a dictionary with 'output'
+            if isinstance(answer, dict) and "output" in answer:
+                st.code(answer["output"], language='python')
+            else:
+                st.markdown(answer)
+                
+        except ValueError as e:
+            st.error(f"Error en el agente: {str(e)}")
